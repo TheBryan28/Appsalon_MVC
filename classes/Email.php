@@ -42,7 +42,7 @@ class Email {
          $contenido .= "<p>Si tu no solicitaste este cambio, puedes ignorar el mensaje</p>";
          $contenido .= '</html>';
          $mail->Body = $contenido;
-         debuguear($contenido);
+         //debuguear($contenido);
          //Enviar el mail
          $mail->send();
 
