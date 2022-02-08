@@ -16,11 +16,15 @@ class Router
     }
 
     public function comprobarRutas() {
+        //para localhost
         //$currentUrl = $_SERVER['PATH_INFO'] ?? '/';
-        //$currentUrl = $_SERVER['PATH_INFO'] ===''? '/':$_SERVER['PATH_INFO'];
+
+        //para Heroku
+        $currentUrl = $_SERVER['REDIRECT_URL'] ===''? '/':$_SERVER['REDIRECT_URL'];
+        
         //si la url esta vacia le asigna /, si no el valor que tiene
-        $currentUrl = $_SERVER['REQUEST_URI'] ===''? '/':$_SERVER['REQUEST_URI'];
-        debuguear($_SERVER);
+        //$currentUrl = $_SERVER['REQUEST_URI'] ===''? '/':$_SERVER['REQUEST_URI'];
+        //debuguear($_SERVER);
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
