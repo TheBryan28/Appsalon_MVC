@@ -22,11 +22,11 @@ class Email {
          // create a new object
          $mail = new PHPMailer();
          $mail->isSMTP();
-         $mail->Host = 'smtp.mailtrap.io';
+         $mail->Host = $_ENV['MAILGUN_SMTP_SERVER'];//'smtp.mailtrap.io';
          $mail->SMTPAuth = true;
-         $mail->Port = 2525;
-         $mail->Username = 'f063be9a33af6a';
-         $mail->Password = '535cfc64e73e70';
+         $mail->Port = $_ENV['MAILGUN_SMTP_PORT'];//2525;
+         $mail->Username = $_ENV['MAILGUN_SMTP_LOGIN'];//'f063be9a33af6a';
+         $mail->Password = $_ENV['MAILGUN_SMTP_PASSWORD'];//'535cfc64e73e70';
      
          $mail->setFrom('cuentas@appsalon.com');
          $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
