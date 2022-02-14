@@ -22,14 +22,14 @@ class Email {
          // create a new object
          $mail = new PHPMailer();
          $mail->isSMTP();
-         $mail->Host = $_ENV['MAILGUN_SMTP_SERVER'];//'smtp.mailtrap.io';
+         $mail->Host = $_ENV['MAILGUN_SMTP_SERVER'];
          $mail->SMTPAuth = true;
-         $mail->Port = $_ENV['MAILGUN_SMTP_PORT'];//2525;
-         $mail->Username = $_ENV['MAILGUN_SMTP_LOGIN'];//'f063be9a33af6a';
-         $mail->Password = $_ENV['MAILGUN_SMTP_PASSWORD'];//'535cfc64e73e70';
+         $mail->Port = $_ENV['MAILGUN_SMTP_PORT'];
+         $mail->Username = $_ENV['MAILGUN_SMTP_LOGIN'];
+         $mail->Password = $_ENV['MAILGUN_SMTP_PASSWORD'];
      
          $mail->setFrom('cuentas@appsalon.com');
-         $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
+         $mail->addAddress($this->email, $this->nombre);
          $mail->Subject = 'Confirma tu Cuenta';
 
          // Set HTML
@@ -37,7 +37,7 @@ class Email {
          $mail->CharSet = 'UTF-8';
 
          $contenido = '<html>';
-         $contenido .= "<p><strong>Hola " . $this->email .  "</strong> Has Creado tu cuenta en App Salón, solo debes confirmarla presionando el siguiente enlace</p>";
+         $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has Creado tu cuenta en App Salón, solo debes confirmarla presionando el siguiente enlace</p>";
          $contenido .= "<p>Presiona aquí: <a href='http://".$url."/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a>";        
          $contenido .= "<p>Si tu no solicitaste este cambio, puedes ignorar el mensaje</p>";
          $contenido .= '</html>';
@@ -53,14 +53,14 @@ class Email {
         // create a new object
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        $mail->Host = $_ENV['MAILGUN_SMTP_SERVER'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'f063be9a33af6a';
-        $mail->Password = '535cfc64e73e70';
+        $mail->Port = $_ENV['MAILGUN_SMTP_PORT'];
+        $mail->Username = $_ENV['MAILGUN_SMTP_LOGIN'];
+        $mail->Password =  $_ENV['MAILGUN_SMTP_PASSWORD'];
     
         $mail->setFrom('cuentas@appsalon.com');
-        $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
+        $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Reestablece tu password';
 
         // Set HTML
